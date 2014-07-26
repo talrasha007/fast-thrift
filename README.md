@@ -1,10 +1,11 @@
 # fast-thrift
-# DESCRIPTION TO THIS PROJECT
+## DESCRIPTION TO THIS PROJECT
   It is exactly the same as thrift. But with some improvements:
   
   - Thrift 0.9.1's server missed an error handler. (It's ok in their git repo, but....)
   - Thrift creates a lot of tiny Buffer objects during serialization, that will cause performance issue, i rewrite the
    logic to write data to a large buffer directly, so it will be about 3x faster.
+  - If you find any bug, go to: [https://github.com/talrasha007/fast-thrift/issues](https://github.com/talrasha007/fast-thrift/issues)
 
 ```
 # Licensed to the Apache Software Foundation (ASF) under one
