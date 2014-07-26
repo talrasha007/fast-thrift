@@ -6,7 +6,7 @@
     "type": "git",
     "url": "https://github.com/talrasha007/fast-thrift.git"
   },
-  "version": "0.9.1",
+  "version": "0.9.2",
   "author": {
     "name": "Apache Thrift Developers",
     "email": "dev@thrift.apache.org",

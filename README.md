@@ -5,6 +5,7 @@
   - Thrift 0.9.1's server missed an error handler. (It's ok in their git repo, but....)
   - Thrift creates a lot of tiny Buffer objects during serialization, that will cause performance issue, i rewrite the
    logic to write data to a large buffer directly, so it will be about 3x faster.
+  - Because node-int64 creates Buffer object too, so use [long](https://www.npmjs.org/package/long) instead.
   - If you find any bug, go to: [https://github.com/talrasha007/fast-thrift/issues](https://github.com/talrasha007/fast-thrift/issues)
 
 ```
