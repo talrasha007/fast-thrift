@@ -16,7 +16,7 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-var thrift = require('thrift');
+var thrift = require('fast-thrift');
 
 var UserStorage = require('./gen-nodejs/UserStorage.js'),
     ttypes = require('./gen-nodejs/user_types');
@@ -33,7 +33,11 @@ var server = thrift.createServer(UserStorage, {
   retrieve: function(uid, result) {
     console.log("server retrieved:", uid);
     result(null, users[uid]);
-  },
+  }
+});
+
+server.on('error', function (err) {
+    console.log('Thrift server error: ', err);
 });
 
 server.listen(9090);
