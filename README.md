@@ -6,6 +6,7 @@
   - Thrift creates a lot of tiny Buffer objects during serialization, that will cause performance issue, i rewrite the
    logic to write data to a large buffer directly, so it will be about 3x faster.
 
+```
 # Licensed to the Apache Software Foundation (ASF) under one
 # or more contributor license agreements. See the NOTICE file
 # distributed with this work for additional information
@@ -22,7 +23,7 @@
 # KIND, either express or implied. See the License for the
 # specific language governing permissions and limitations
 # under the License.
-
+```
 
 NOTE: you must use the framed thrift transport, TFramedTransport in most
 implementations, on the server side. Using a popular example, this is enabled
