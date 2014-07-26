@@ -1,3 +1,10 @@
+# DESCRIPTION TO THIS PROJECT
+  It is exactly the same as thrift. But with some improvements:
+  
+  - Thrift 0.9.1's server missed an error handler. (It's ok in their git repo, but....)
+  - Thrift creates a lot of tiny Buffer objects during serialization, that will cause performance issue, i rewrite the
+   logic to write data to a large buffer directly, so it will be about 3x faster.
+
 # Licensed to the Apache Software Foundation (ASF) under one
 # or more contributor license agreements. See the NOTICE file
 # distributed with this work for additional information
@@ -23,7 +30,7 @@ by default in Cassandra 0.7 (but configuration must be changed in Cassandra
 
 ## Install
 
-    npm install thrift 
+    npm install fast-thrift 
 
 ## Thrift Compiler
 
