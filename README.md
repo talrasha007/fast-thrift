@@ -40,13 +40,13 @@ by default in Cassandra 0.7 (but configuration must be changed in Cassandra
 
 You can compile nodejs sources by running the following:
 
-    thrift --gen js:node thrift_file
+    thrift --gen js:node thrift_file // Then replace every "require('thrift')" with "require('fast-thrift')"
 
 ## Cassandra Client Example:
 
 Here is a Cassandra example:
 
-    var thrift = require('thrift'),
+    var thrift = require('fast-thrift'),
         Cassandra = require('./gen-nodejs/Cassandra')
         ttypes = require('./gen-nodejs/cassandra_types');
 
