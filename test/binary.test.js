@@ -18,7 +18,7 @@
  */
 
 var testCase = require('nodeunit').testCase;
-var binary = require('../lib/thrift/binary');
+var binary = require('thrift/binary');
 
 module.exports = testCase({
   "Should read signed byte": function(test){

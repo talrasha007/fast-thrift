@@ -16,24 +16,38 @@
  * specific language governing permissions and limitations
  * under the License.
  */
+var connect = require('connect');
 var thrift = require('thrift');
 
-var UserStorage = require('./gen-nodejs/UserStorage.js'),
+var UserStorage = require('./gen-nodejs/UserStorage'),
     ttypes = require('./gen-nodejs/user_types');
 
 var users = {};
 
-var server = thrift.createServer(UserStorage, {
-  store: function(user, result) {
-    console.log("server stored:", user.uid);
-    users[user.uid] = user;
-    result(null);
-  },
+var store = function(user, result) {
+  console.log("stored:", user.uid);
+  users[user.uid] = user;
+  result(null);
+};
+var retrieve = function(uid, result) {
+  console.log("retrieved:", uid);
+  result(null, users[uid]);
+};
 
-  retrieve: function(uid, result) {
-    console.log("server retrieved:", uid);
-    result(null, users[uid]);
-  },
+var server_http = thrift.createHttpServer(UserStorage, {
+  store: store,
+  retrieve: retrieve
 });
+server_http.listen(9090);
 
-server.listen(9090);
+var server_connect = connect(thrift.httpMiddleware(UserStorage, {
+ store: store,
+ retrieve: retrieve
+}));
+server_http.listen(9091);
+
+var server_connect_json = connect(thrift.httpMiddleware(UserStorage, {
+ store: store,
+ retrieve: retrieve
+}, {protocol: thrift.TJSONProtocol}));
+server_connect_json.listen(9092);

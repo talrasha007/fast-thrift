@@ -16,24 +16,12 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-var thrift = require('thrift');
+service HelloSvc {
+    string hello_func(),
+}
 
-var UserStorage = require('./gen-nodejs/UserStorage.js'),
-    ttypes = require('./gen-nodejs/user_types');
+service TimesTwo {
+    i64 dbl(1: i64 val),
+}
 
-var users = {};
 
-var server = thrift.createServer(UserStorage, {
-  store: function(user, result) {
-    console.log("server stored:", user.uid);
-    users[user.uid] = user;
-    result(null);
-  },
-
-  retrieve: function(uid, result) {
-    console.log("server retrieved:", uid);
-    result(null, users[uid]);
-  },
-});
-
-server.listen(9090);

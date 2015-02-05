@@ -16,7 +16,7 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-var thrift = require('fast-thrift');
+var thrift = require('thrift');
 
 var UserStorage = require('./gen-nodejs/UserStorage.js'),
     ttypes = require('./gen-nodejs/user_types');

@@ -1,53 +1,41 @@
-# fast-thrift
-## DESCRIPTION TO THIS PROJECT
-  It is exactly the same as thrift. But with some improvements:
-  
-  - Thrift 0.9.1's server missed an error handler. (It's ok in their git repo, but....)
-  - Thrift creates a lot of tiny Buffer objects during serialization, that will cause performance issue, i rewrite the
-   logic to write data to a large buffer directly, so it could be up to 3x faster when you have a lot of params in a thrift call.
-  - Because node-int64 creates Buffer object too, so use [long](https://www.npmjs.org/package/long) instead.
-  - If you find any bug, go to: [https://github.com/talrasha007/fast-thrift/issues](https://github.com/talrasha007/fast-thrift/issues)
+Thrift Node.js Library
+=========================
 
-```
-# Licensed to the Apache Software Foundation (ASF) under one
-# or more contributor license agreements. See the NOTICE file
-# distributed with this work for additional information
-# regarding copyright ownership. The ASF licenses this file
-# to you under the Apache License, Version 2.0 (the
-# "License"); you may not use this file except in compliance
-# with the License. You may obtain a copy of the License at
-#
-#   http://www.apache.org/licenses/LICENSE-2.0
-#
-# Unless required by applicable law or agreed to in writing,
-# software distributed under the License is distributed on an
-# "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
-# KIND, either express or implied. See the License for the
-# specific language governing permissions and limitations
-# under the License.
-```
+License
+-------
+Licensed to the Apache Software Foundation (ASF) under one
+or more contributor license agreements. See the NOTICE file
+distributed with this work for additional information
+regarding copyright ownership. The ASF licenses this file
+to you under the Apache License, Version 2.0 (the
+"License"); you may not use this file except in compliance
+with the License. You may obtain a copy of the License at
 
-NOTE: you must use the framed thrift transport, TFramedTransport in most
-implementations, on the server side. Using a popular example, this is enabled
-by default in Cassandra 0.7 (but configuration must be changed in Cassandra
-0.6.x and earlier).
+  http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing,
+software distributed under the License is distributed on an
+"AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+KIND, either express or implied. See the License for the
+specific language governing permissions and limitations
+under the License.
+
 
 ## Install
 
-    npm install fast-thrift 
+    npm install thrift 
 
 ## Thrift Compiler
 
-You can compile nodejs sources by running the following:
+You can compile IDL sources for Node.js with the following command:
 
     thrift --gen js:node thrift_file
-    #Then replace every "require('thrift')" with "require('fast-thrift')"
 
 ## Cassandra Client Example:
 
 Here is a Cassandra example:
 
-    var thrift = require('fast-thrift'),
+    var thrift = require('thrift'),
         Cassandra = require('./gen-nodejs/Cassandra')
         ttypes = require('./gen-nodejs/cassandra_types');
 
